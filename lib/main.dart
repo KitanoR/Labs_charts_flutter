@@ -22,12 +22,35 @@ class MyApp extends StatelessWidget {
         Locale('es')
       ],
       theme: ThemeData.light(),
-      home: Scaffold(
-        body: CuerpoWidget(),
-      )
+      home: HomeView()
+      
     );
   }
 }
+
+class HomeView extends StatelessWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: scaffoldKey,
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          scaffoldKey.currentState
+          .showBottomSheet((context) => Container(
+                color: Colors.red,
+                height: 200,
+              ));
+        },
+      ),
+      body: CuerpoWidget(),
+      
+    );
+  }
+}
+
+
 
 class CuerpoWidget extends StatelessWidget {
  
